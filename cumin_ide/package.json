@@ -7,7 +7,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@uiw/react-codemirror": "^2.3.2",
+    "codemirror": "^5.57.0",
     "react": "^16.13.1",
+    "react-codemirror2": "^7.2.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"
   },
