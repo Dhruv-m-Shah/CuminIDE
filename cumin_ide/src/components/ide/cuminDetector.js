@@ -9,7 +9,6 @@ export function cuminDetector() {
     },
     token: function (stream, state) {
       // If a string starts here
-      console.log(state.accumulator);
       if (!state.inString && stream.peek() == '"') {
         stream.next(); // Skip quote
         state.inString = true; // Update state
@@ -29,7 +28,6 @@ export function cuminDetector() {
       if (stream.match(/function/)) {
         return "keyword";
       }
-      console.log(stream.peek());
       if(state.operators.includes(stream.peek())){
           stream.next();
           return "operator";
