@@ -41,6 +41,24 @@ export class Docs extends Component {
             console.log(this.state.code);
           }}
         />
+        <h5>Variable Assignment</h5>
+        <p>Variables in Cumin must be assigned to some value and the type of variable must be declared. Here are some examples: </p>
+        <CodeMirror
+          className="CodeMirror "
+          value =' num x = 123?
+          str y = "Hello World!"?
+          flo z = 3.1415?'
+          options={{
+            defineMode: { name: "cumin", fn: cuminDetector() },
+            theme: "material",
+            lineNumbers: true,
+            readOnly: "nocursor"
+          }}
+          onChange={(editor, data, value) => {
+            this.setState({ code: value });
+            console.log(this.state.code);
+          }}
+        />
       </div>
     );
   }

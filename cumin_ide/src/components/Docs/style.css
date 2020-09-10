@@ -3,7 +3,9 @@
     position: relative;
 }
 p{
-    margin-top: -5px;
+}
+h5{
+    margin-top: 10px;
 }
 .qualifier{
     color: #DECB6B;
