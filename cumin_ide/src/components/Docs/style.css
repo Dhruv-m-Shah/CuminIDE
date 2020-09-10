@@ -2,3 +2,12 @@
     margin: 20px;
     position: relative;
 }
+p{
+    margin-top: -5px;
+}
+.qualifier{
+    color: #DECB6B;
+    background-color: #263238;
+    border-radius: 5px;
+    padding: 3px;
+}
