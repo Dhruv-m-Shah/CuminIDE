@@ -1,6 +1,7 @@
 import { UnControlled as CodeMirror } from "react-codemirror2";
 import React, { Component } from "react";
 import NavBar from "./components/Navbar/index";
+import Docs from "./components/Docs/index";
 import { cuminDetector } from "./components/ide/cuminDetector";
 import "./App.css";
 import CodeMirrorLib from "codemirror";
@@ -14,9 +15,9 @@ class App extends Component {
   }
   runCode = () => {
     var request = new XMLHttpRequest();
-    request.open('GET', 'http://localhost:9090') 
+    request.open("GET", "http://localhost:9090");
     console.log(this.state.code);
-    request.setRequestHeader('test', this.state.code)
+    request.setRequestHeader("test", this.state.code);
     request.send();
     request.onreadystatechange = function () {
       if (request.readyState == 4 && request.status == 200) {
@@ -26,7 +27,7 @@ class App extends Component {
         console.log(request.responseText);
       }
     };
-  }
+  };
   render() {
     return (
       <div className="wrapper">
@@ -44,7 +45,9 @@ class App extends Component {
               console.log(this.state.code);
             }}
           />
-          <div className="docs"></div>
+        </div>
+        <div className="docs">
+          <Docs></Docs>
         </div>
       </div>
     );
