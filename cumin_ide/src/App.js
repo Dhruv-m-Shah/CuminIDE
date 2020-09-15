@@ -15,13 +15,12 @@ class App extends Component {
   }
   runCode = () => {
     var request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:9090");
+    request.open("GET", "http://127.0.0.1:9999");
     console.log(this.state.code);
     request.setRequestHeader("test", this.state.code);
     request.send();
     request.onreadystatechange = function () {
       if (request.readyState == 4 && request.status == 200) {
-        window.location.href = "submitted.html";
         console.log(request.responseText);
       } else {
         console.log(request.responseText);

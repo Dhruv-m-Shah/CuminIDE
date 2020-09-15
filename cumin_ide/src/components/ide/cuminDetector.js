@@ -33,7 +33,6 @@ export function cuminDetector() {
           return "operator";
       }
 
-
       if (state.inString) {
         if (stream.skipTo('"')) {
           // Quote found on this line

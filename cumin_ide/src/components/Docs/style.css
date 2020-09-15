@@ -1,6 +1,7 @@
 .Content_wrapper{
     margin: 20px;
     position: relative;
+    overflow: auto;
 }
 p{
 }

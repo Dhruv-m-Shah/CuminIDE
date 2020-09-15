@@ -21,20 +21,21 @@ export class Docs extends Component {
         </p>
         <h5>Basics of Cumin</h5>
         <p>
-          The main entry point for a cumin application is indicated by the{" "}
-          <code className = "qualifier">start</code> keyword and the end is indicating with the{" "}
-          <code className = "qualifier">end</code> keyword. It should look something like this:
+          The main entry point for a Cumin application is indicated by the{" "}
+          <code className="qualifier">start</code> keyword and the end is
+          indicating with the <code className="qualifier">end</code> keyword. It
+          should look something like this:
         </p>
         <CodeMirror
           className="CodeMirror"
-          value =" start 
-          // ENTER CODE HERE
+          value=" start 
+          [ENTER CODE HERE]
         end"
           options={{
             defineMode: { name: "cumin", fn: cuminDetector() },
             theme: "material",
             lineNumbers: true,
-            readOnly: "nocursor"
+            readOnly: "nocursor",
           }}
           onChange={(editor, data, value) => {
             this.setState({ code: value });
@@ -42,23 +43,81 @@ export class Docs extends Component {
           }}
         />
         <h5>Variable Assignment</h5>
-        <p>Variables in Cumin must be assigned to some value and the type of variable must be declared. Here are some examples: </p>
+        <p>
+          Variables in Cumin must be assigned to some value and the type of
+          variable must be declared. Here are some examples:{" "}
+        </p>
         <CodeMirror
           className="CodeMirror "
-          value =' num x = 123?
+          value=' num x = 123?
           str y = "Hello World!"?
           flo z = 3.1415?'
           options={{
             defineMode: { name: "cumin", fn: cuminDetector() },
             theme: "material",
             lineNumbers: true,
-            readOnly: "nocursor"
+            readOnly: "nocursor",
           }}
           onChange={(editor, data, value) => {
             this.setState({ code: value });
             console.log(this.state.code);
           }}
         />
+        <h5>Statements</h5>
+        <p>
+          Notice something funny in the previous code snippet? Each variable
+          assignment ended in a question mark (?).
+        </p>
+        <h5>Operators</h5>
+        <p>
+          Cumin currently supports the four basic arithmetic operators addition
+          (+), subtraction (-), multiplication (*), and division (/). Brackets
+          can be used to implement order of operation rules
+        </p>
+        <CodeMirror
+          className="CodeMirror "
+          value=" num x = (123 + 23) * 4 / 2?  [x = 292]
+          num y = 123 + 5 - 4*5? [y = 108]
+          flo z = 3.1415 - 3.14*2? [-3.1385]"
+          options={{
+            defineMode: { name: "cumin", fn: cuminDetector() },
+            theme: "material",
+            lineNumbers: true,
+            readOnly: "nocursor",
+          }}
+          onChange={(editor, data, value) => {
+            this.setState({ code: value });
+            console.log(this.state.code);
+          }}
+        />
+        <h5>Order of Operations - Precedence Table</h5>
+        <p>Operations that have the same precedence are prioritized based on the operation that appears leftmost in the statement. Statements are given a higher priority if they are surrounded with brackets.</p>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Precedence</th>
+              <th scope="col">Operator</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>* (multiplication)</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>/ (division)</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td colspan="2">+ (addition)</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td colspan="2">- (subtraction)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
