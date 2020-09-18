@@ -14,18 +14,19 @@ class App extends Component {
     this.state = { code: "" };
   }
   runCode = () => {
-    var request = new XMLHttpRequest();
-    request.open("GET", "http://127.0.0.1:9999");
-    console.log(this.state.code);
-    request.setRequestHeader("test", this.state.code);
-    request.send();
-    request.onreadystatechange = function () {
-      if (request.readyState == 4 && request.status == 200) {
-        console.log(request.responseText);
-      } else {
-        console.log(request.responseText);
-      }
-    };
+    const socket = new WebSocket('ws://localhost:9980');
+    let codeSnippet = this.state.code.replace(/\s/g, "");
+    console.log(codeSnippet.length);
+    // Connection opened
+
+    socket.addEventListener('open', function (event) {
+        socket.send(codeSnippet.length + " " + codeSnippet);
+    });
+    socket.addEventListener('message', function (event) {
+      console.log('Message from server ', event.data);
+      socket.close();
+  });
+
   };
   render() {
     return (
