@@ -29,7 +29,7 @@ export class Docs extends Component {
         <CodeMirror
           className="CodeMirror"
           value=" start 
-          [ENTER CODE HERE]
+          [ENTER CODE HERE (Comments can be inserted within square brackets like this!)]
         end"
           options={{
             defineMode: { name: "cumin", fn: cuminDetector() },

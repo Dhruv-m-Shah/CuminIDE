@@ -3,17 +3,37 @@ export function cuminDetector() {
     startState: function () {
       return {
         inString: false,
+        inComment: false,
         accumulator: "",
         operators: ["+", "-", "/", "*"],
       };
     },
     token: function (stream, state) {
       // If a string starts here
+      if(!state.inComment && stream.peek() == "["){
+        state.inComment = true;
+        if (stream.skipTo(']')) {
+          // Quote found on this line
+          stream.next(); // Skip quote
+          state.inComment = false; // Clear flag
+        } else {
+          stream.skipToEnd(); // Rest of line is string
+        }
+        return "comment"; // Token style
+      }
       if (!state.inString && stream.peek() == '"') {
-        stream.next(); // Skip quote
-        state.inString = true; // Update state
-      } else {
-        state.accumulator += stream.peek();
+        state.inString = true;
+        stream.next();
+        if (state.inString) {
+          if (stream.skipTo('"')) {
+            // Quote found on this line
+            stream.next(); // Skip quote
+            state.inString = false; // Clear flag
+          } else {
+            stream.skipToEnd(); // Rest of line is string
+          }
+          return "string"; // Token style
+        } 
       }
       if (
         stream.match(/\s*num/) ||
@@ -32,20 +52,7 @@ export function cuminDetector() {
           stream.next();
           return "operator";
       }
-
-      if (state.inString) {
-        if (stream.skipTo('"')) {
-          // Quote found on this line
-          stream.next(); // Skip quote
-          state.inString = false; // Clear flag
-        } else {
-          stream.skipToEnd(); // Rest of line is string
-        }
-        return "string"; // Token style
-      } else {
-        stream.skipTo('"') || stream.next();
-      }
-      
+      stream.next();
     },
   };
 }
