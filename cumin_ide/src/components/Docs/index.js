@@ -118,6 +118,27 @@ export class Docs extends Component {
             </tr>
           </tbody>
         </table>
+        <h5>Printing</h5>
+        <p>Cumin is able to print numbers, decimals, and strings. Note that expressions cannot be inclosed in a print statement. Here are a few examples:</p>
+        <CodeMirror
+          className="CodeMirror "
+          value='num x = 123?
+                print(x)? [prints: 123]
+                print(123)? [prints: 123]
+                print("Hello World!")? [prints: Hello World] 
+                print(1+1)? [THIS IS NOT ALLOWED, no expressions can be enclosed within a print statement]
+                print(x*1)? [This IS NOT ALLOWED, no expressions can be enclosed within a print statement]'
+          options={{
+            defineMode: { name: "cumin", fn: cuminDetector() },
+            theme: "material",
+            lineNumbers: true,
+            readOnly: "nocursor",
+          }}
+          onChange={(editor, data, value) => {
+            this.setState({ code: value });
+            console.log(this.state.code);
+          }}
+        />
       </div>
     );
   }
