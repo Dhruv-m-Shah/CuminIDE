@@ -14,19 +14,27 @@ class App extends Component {
     this.state = { code: "" };
   }
   runCode = () => {
-    const socket = new WebSocket('ws://localhost:9980');
-    let codeSnippet = this.state.code.replace(/\s/g, "");
-    console.log(codeSnippet.length);
-    // Connection opened
+    try {
+      const socket = new WebSocket("ws://localhost:9980");
+      let codeSnippet = this.state.code.replace(/\s/g, "");
+      console.log(codeSnippet.length);
+      // Connection opened
 
-    socket.addEventListener('open', function (event) {
+      socket.addEventListener("open", function (event) {
         socket.send(codeSnippet.length + " " + codeSnippet);
-    });
-    socket.addEventListener('message', function (event) {
-      console.log('Message from server ', event.data);
-      socket.close();
-  });
-
+      });
+      // socket.addEventListener("message", function (event) {
+      //   // figure out how to handle data sent from C++ server.
+      //   socket.close();
+      // });
+      socket.onerror(function (err){
+        console.log(err);
+        alert("Could not establish connection with server!");
+      })
+    } catch(err){
+      console.log(err);
+      alert("Could not establish connection with server!");
+    }
   };
   render() {
     return (
