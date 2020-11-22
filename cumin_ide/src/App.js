@@ -8,6 +8,7 @@ import CodeMirrorLib from "codemirror";
 CodeMirrorLib.defineMode("yourMode", cuminDetector);
 require("codemirror/mode/xml/xml");
 require("codemirror/mode/javascript/javascript");
+//test
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,14 +24,11 @@ class App extends Component {
       socket.addEventListener("open", function (event) {
         socket.send(codeSnippet.length + " " + codeSnippet);
       });
-      // socket.addEventListener("message", function (event) {
-      //   // figure out how to handle data sent from C++ server.
-      //   socket.close();
-      // });
-      socket.onerror(function (err){
-        console.log(err);
-        alert("Could not establish connection with server!");
-      })
+      socket.addEventListener("message", function (event) {
+        // figure out how to handle data sent from C++ server.
+        console.log(event);
+        socket.close();
+      });
     } catch(err){
       console.log(err);
       alert("Could not establish connection with server!");
