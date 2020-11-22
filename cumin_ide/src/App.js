@@ -8,7 +8,7 @@ import CodeMirrorLib from "codemirror";
 CodeMirrorLib.defineMode("yourMode", cuminDetector);
 require("codemirror/mode/xml/xml");
 require("codemirror/mode/javascript/javascript");
-//test
+//test1234
 class App extends Component {
   constructor(props) {
     super(props);
