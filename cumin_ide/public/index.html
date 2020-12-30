@@ -18,7 +18,7 @@
   <script type = "text/javascript">
     var js_wrapped_interpretor=Module.cwrap("interpretorWrapper", "string", ["string"]);
 		function pressBtn(code){
-			console.log(js_wrapped_interpretor(code));
+			return js_wrapped_interpretor(code);
     }
   </script>
   <!--<link rel="stylesheet" href="../src/components/ide/codemirror-5.57.0/lib/codemirror.css">!--->

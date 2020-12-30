@@ -8,10 +8,13 @@
     "@testing-library/user-event": "^7.1.2",
     "@uiw/react-codemirror": "^2.3.2",
     "codemirror": "^5.57.0",
+    "javascript-terminal": "^1.1.1",
     "react": "^16.13.1",
     "react-codemirror2": "^7.2.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-terminal-component": "^1.4.1",
+    "terminal-in-react": "^4.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
