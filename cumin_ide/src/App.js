@@ -18,13 +18,13 @@ class App extends Component {
   }
   runCode = () => {
     try {
-      let codeSnippet = this.state.code.replace(/\s/g, "");
+      let codeSnippet = this.state.code.replace(/\r?\n|\r/g, "");
       let outputStream = window.pressBtn(codeSnippet).split("abhashcumin420ab~~ab~~cumin19065");
       console.log(outputStream);
       this.terminalOutput.current.changeInput(outputStream);
     } catch(err){
       console.log(err);
-      alert("Could not establish connection with server!");
+      alert("Something went wrong!");
     }
   };
   render() {
